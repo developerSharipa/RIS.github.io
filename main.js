@@ -45,18 +45,21 @@ let c = {
   44: 0.0133,
   45: 0.0133,
 };
+
 let count = 0;
 let a = [];
 let b = [];
+let d = [];
+let e = [];
 fetch("https://617d4c5a1eadc50017136462.mockapi.io/Raiting")
   .then((res) => {
     return res.json();
   })
   .then((json) => {
-    for (i = 0; i <= 44; i++) {
+    for (i = 0; i <= 24; i++) {
       let sum = 0;
       a.push(json[i].name);
-      for (j = 1; j <= 45; j++) {
+      for (j = 1; j <= 25; j++) {
         sum += json[i].field[j] * c[j];
       }
       b.push(sum);
@@ -71,6 +74,59 @@ fetch("https://617d4c5a1eadc50017136462.mockapi.io/Raiting")
           {
             label: "Итоговый балл",
             data: b,
+            backgroundColor: [
+              "rgba(255, 99, 132, 0.2)",
+              "rgba(54, 162, 235, 0.2)",
+              "rgba(255, 206, 86, 0.2)",
+              "rgba(75, 192, 192, 0.2)",
+              "rgba(153, 102, 255, 0.2)",
+              "rgba(255, 159, 64, 0.2)",
+            ],
+            borderColor: [
+              "rgba(255, 99, 132, 1)",
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(75, 192, 192, 1)",
+              "rgba(153, 102, 255, 1)",
+              "rgba(255, 159, 64, 1)",
+            ],
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    });
+  });
+
+fetch("https://617d4c5a1eadc50017136462.mockapi.io/RaitingKK")
+  .then((res) => {
+    return res.json();
+  })
+  .then((json) => {
+    for (i = 0; i <= 4; i++) {
+      let sum = 0;
+      d.push(json[i].name);
+      for (j = 1; j <= 44; j++) {
+        sum += json[i].field[j] * c[j];
+      }
+      e.push(sum);
+    }
+
+    const ctx = document.getElementById("KK");
+    const KK = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: d,
+        datasets: [
+          {
+            label: "Итоговый балл",
+            data: e,
             backgroundColor: [
               "rgba(255, 99, 132, 0.2)",
               "rgba(54, 162, 235, 0.2)",
