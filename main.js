@@ -59,7 +59,7 @@ fetch("https://617d4c5a1eadc50017136462.mockapi.io/Raiting")
     for (i = 0; i <= 24; i++) {
       let sum = 0;
       a.push(json[i].name);
-      for (j = 1; j <= 25; j++) {
+      for (j = 1; j <= 44; j++) {
         sum += json[i].field[j] * c[j];
       }
       b.push(sum);
